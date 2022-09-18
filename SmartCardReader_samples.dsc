@@ -84,6 +84,7 @@
   SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
 
   CacheMaintenanceLib|MdePkg/Library/BaseCacheMaintenanceLib/BaseCacheMaintenanceLib.inf
+  RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
 
 
 ###############################################################################
