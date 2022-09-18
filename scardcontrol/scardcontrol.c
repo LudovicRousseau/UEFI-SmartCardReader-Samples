@@ -263,6 +263,7 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 			case FEATURE_CCID_ESC_COMMAND:
 				Print(L"Reader supports FEATURE_CCID_ESC_COMMAND\n");
 				ccid_esc_command = ntohl(pcsc_tlv[i].value);
+				(void)ccid_esc_command;
 				break;
 			default:
 				Print(L"Can't parse tag", pcsc_tlv[i].tag);
