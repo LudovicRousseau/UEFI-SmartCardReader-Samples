@@ -65,6 +65,10 @@ int HelloWorld(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	 */
 	CAPDULength = sizeof CAPDU_select;
 	RAPDULength = sizeof RAPDU;
+	Print(L"CAPDU: ");
+	for (i=0; i<CAPDULength; i++)
+		Print(L"%02X ", CAPDU_select[i]);
+	Print(L"\n");
 	Status = SmartCardReader->SCardTransmit(SmartCardReader,
 		CAPDU_select, CAPDULength,
 		RAPDU, &RAPDULength);
@@ -84,6 +88,10 @@ int HelloWorld(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	 */
 	CAPDULength = sizeof CAPDU_command;
 	RAPDULength = sizeof RAPDU;
+	Print(L"CAPDU: ");
+	for (i=0; i<CAPDULength; i++)
+		Print(L"%02X ", CAPDU_command[i]);
+	Print(L"\n");
 	Status = SmartCardReader->SCardTransmit(SmartCardReader,
 		CAPDU_command, CAPDULength,
 		RAPDU, &RAPDULength);
