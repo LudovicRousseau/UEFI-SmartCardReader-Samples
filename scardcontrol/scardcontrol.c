@@ -443,7 +443,7 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	send_length = sizeof(PIN_VERIFY_STRUCTURE) + offset;
 
 	Print(L" command:");
-	for (i=0; i<length; i++)
+	for (i=0; i<send_length; i++)
 		Print(L" %02X", bSendBuffer[i]);
 	Print(L"\n");
 	Print(L"Enter your PIN: \n");
@@ -560,7 +560,7 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	send_length = sizeof(PIN_MODIFY_STRUCTURE) + offset;
 
 	Print(L" command:");
-	for (i=0; i<length; i++)
+	for (i=0; i<send_length; i++)
 		Print(L" %02X", bSendBuffer[i]);
 	Print(L"\n");
 	Print(L"Enter your PIN: \n");
