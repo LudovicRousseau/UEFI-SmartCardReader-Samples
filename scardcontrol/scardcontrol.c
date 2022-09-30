@@ -391,11 +391,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	length = sizeof(bRecvBuffer);
 	rv = SmartCardReader->SCardTransmit(SmartCardReader,
 		bSendBuffer, send_length, bRecvBuffer, &length);
+	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
 	Print(L"\n");
-	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	if ((bRecvBuffer[0] != 0x90) || (bRecvBuffer[1] != 0x00))
 	{
 		Print(L"Error: test applet not found!\n");
@@ -451,11 +451,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	rv = SmartCardReader->SCardControl(SmartCardReader, verify_ioctl,
 		bSendBuffer, send_length, bRecvBuffer, &length);
 
+	PCSC_ERROR_CONT(rv, L"SCardControl")
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
 	Print(L": %a\n", pinpad_return_codes(bRecvBuffer));
-	PCSC_ERROR_CONT(rv, L"SCardControl")
 
 	/* verify PIN dump */
 	Print(L"\nverify PIN dump: ");
@@ -468,11 +468,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	length = sizeof(bRecvBuffer);
 	rv = SmartCardReader->SCardTransmit(SmartCardReader, bSendBuffer, send_length,
 		bRecvBuffer, &length);
+	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
 	Print(L"\n");
-	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 
 	if ((2 == length) && (0x6C == bRecvBuffer[0]))
 	{
@@ -487,11 +487,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 		length = sizeof(bRecvBuffer);
 		rv = SmartCardReader->SCardTransmit(SmartCardReader, bSendBuffer, send_length,
 			bRecvBuffer, &length);
+		PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 		Print(L" card response:");
 		for (i=0; i<length; i++)
 			Print(L" %02X", bRecvBuffer[i]);
 		Print(L"\n");
-		PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	}
 #endif
 
@@ -568,11 +568,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	rv = SmartCardReader->SCardControl(SmartCardReader, modify_ioctl,
 		bSendBuffer, send_length, bRecvBuffer, &length);
 
+	PCSC_ERROR_CONT(rv, L"SCardControl")
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
 	Print(L"\n");
-	PCSC_ERROR_CONT(rv, L"SCardControl")
 
 	/* modify PIN dump */
 	Print(L"\nmodify PIN dump: ");
@@ -585,11 +585,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	length = sizeof(bRecvBuffer);
 	rv = SmartCardReader->SCardTransmit(SmartCardReader, bSendBuffer, send_length,
 		bRecvBuffer, &length);
+	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
 	Print(L"\n");
-	PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 
 	if ((2 == length) && (0x6C == bRecvBuffer[0]))
 	{
@@ -604,11 +604,11 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 		length = sizeof(bRecvBuffer);
 		rv = SmartCardReader->SCardTransmit(SmartCardReader, bSendBuffer, send_length,
 			bRecvBuffer, &length);
+		PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 		Print(L" card response:");
 		for (i=0; i<length; i++)
 			Print(L" %02X", bRecvBuffer[i]);
 		Print(L"\n");
-		PCSC_ERROR_EXIT(rv, L"SCardTransmit")
 	}
 #endif
 
