@@ -454,7 +454,7 @@ int CheckReader(EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader)
 	Print(L" card response:");
 	for (i=0; i<length; i++)
 		Print(L" %02X", bRecvBuffer[i]);
-	Print(L": %s\n", pinpad_return_codes(bRecvBuffer));
+	Print(L": %a\n", pinpad_return_codes(bRecvBuffer));
 	PCSC_ERROR_CONT(rv, L"SCardControl")
 
 	/* verify PIN dump */
