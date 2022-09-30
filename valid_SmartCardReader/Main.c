@@ -59,7 +59,7 @@ int exchange(const char *text, EFI_SMART_CARD_READER_PROTOCOL *SmartCardReader,
 	(void)e;
 #endif
 
-	Print(L"\n%a\n", text);
+	Print(L"\n%a (%d, %d)\n", text, s_length, e_length);
 	//log_xxd(0, "Sent: ", s, s_length);
 
 	rv = SmartCardReader->SCardTransmit(SmartCardReader, s, s_length, r, r_length);
