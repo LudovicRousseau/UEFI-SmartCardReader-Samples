@@ -1,5 +1,5 @@
 /*
- * MUSCLE SmartCard Development ( http://pcsclite.alioth.debian.org/pcsclite.html )
+ * MUSCLE SmartCard Development ( https://pcsclite.apdu.fr/ )
  *
  * Copyright (C) 1999-2005
  *  David Corcoran <corcoran@musclecard.com>
@@ -18,9 +18,6 @@ are met:
 3. The name of the author may not be used to endorse or promote products
    derived from this software without specific prior written permission.
 
-Changes to this license can be made only by the copyright author with
-explicit written consent.
-
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -31,8 +28,6 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * $Id: reader.h 6851 2014-02-14 15:43:32Z rousseau $
  */
 
 /**
@@ -164,7 +159,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /* Set structure elements aligment on bytes
  * http://gcc.gnu.org/onlinedocs/gcc/Structure_002dPacking-Pragmas.html */
-#if defined(__APPLE__) | defined(sun)
+#if defined(__APPLE__) || defined(sun) || defined(__NetBSD__)
 #pragma pack(1)
 #else
 #pragma pack(push, 1)
@@ -201,7 +196,7 @@ typedef struct
 	uint8_t bEntryValidationCondition; /**< Conditions under which PIN entry should
 	                                 * be considered complete */
 	uint8_t bNumberMessage; /**< Number of messages to display for PIN verification */
-	uint16_t wLangId; /**< Language for messages */
+	uint16_t wLangId; /**< Language for messages. https://docs.microsoft.com/en-us/windows/win32/intl/language-identifier-constants-and-strings */
 	uint8_t bMsgIndex; /**< Message index (should be 00) */
 	uint8_t bTeoPrologue[3]; /**< T=1 block prologue field to use (fill with 00) */
 	uint32_t ulDataLength; /**< length of Data to be sent to the ICC */
@@ -238,7 +233,7 @@ typedef struct
 	uint8_t bEntryValidationCondition; /**< Conditions under which PIN entry should
 	                                 * be considered complete */
 	uint8_t bNumberMessage; /**< Number of messages to display for PIN verification*/
-	uint16_t wLangId; /**< Language for messages */
+	uint16_t wLangId; /**< Language for messages. https://docs.microsoft.com/en-us/windows/win32/intl/language-identifier-constants-and-strings */
 	uint8_t bMsgIndex1; /**< index of 1st prompting message */
 	uint8_t bMsgIndex2; /**< index of 2d prompting message */
 	uint8_t bMsgIndex3; /**< index of 3d prompting message */
@@ -261,7 +256,7 @@ typedef struct {
 } PIN_PROPERTIES_STRUCTURE;
 
 /* restore default structure elements alignment */
-#if defined(__APPLE__) | defined(sun)
+#if defined(__APPLE__) || defined(sun) || defined(__NetBSD__)
 #pragma pack()
 #else
 #pragma pack(pop)
